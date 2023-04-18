@@ -41,5 +41,39 @@ const siteContent = { // BU NESNEYİ DEĞİŞTİRMEYİN
 
 console.log('Proje açıldı!')
 
+const menuItems = document.querySelectorAll("nav a");
+menuItems.forEach((item, index) => {
+  item.textContent = siteContent.nav[`nav-item-${index + 1}`];
+  item.setAttribute("class", "italic");
+});
 
-/* Kodlar Buradan aşağıya */
+const mainTextContent = document.querySelectorAll(".text-content");
+let index = 0;
+for (let i = 0; i < mainTextContent.length; i++) {
+  mainTextContent[i].children[0].textContent = Object.values(siteContent
+  ["ana-içerik"])[index];
+  index += 1;
+
+  mainTextContent[i].children[1].textContent = Object.values(siteContent
+    ["ana-içerik"])[index];
+    index += 1;
+}
+ 
+const imgs=document.querySelectorAll("img");
+// console.log(imgs);
+imgs.forEach((img,index)=>{
+  img.setAttribute("src",Object.values(siteContent.images)[index]);
+
+})
+const contactSection=document.querySelector(".contact");
+
+const contactData=Object.values(siteContent.iletisim);
+// console.log(contactData);
+[...contactSection.children].map((elem,ind)=>{
+contactSection.children[ind].textContent=contactData[ind];
+});
+
+const footer = document.querySelector("footer a");
+footer.textContent = siteContent.footer.copyright;
+footer.classList.add("bold");
+
